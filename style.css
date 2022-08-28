@@ -1,0 +1,32 @@
+body{
+  background-color: cornflowerblue;
+  font-family: 'Gill Sans', Calibri, 'Trebuchet MS', sans-serif;
+}
+.wrapper{
+  text-align: center;
+  font-size: 23px;
+  border: 2px solid blueviolet;
+  margin: 30px auto;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: white;
+}
+button{
+  font-size: 22px;
+}
+input{
+  font-size: 18px;
+}
+select{
+  font-size: 18px;
+  padding: 2px;
+}
+#message{
+  color: rgb(191, 33, 33);
+  max-width: max-content;
+  background-color: rgba(247, 247, 10, 0.968);
+  padding: 5px;
+  text-align: center;
+}
