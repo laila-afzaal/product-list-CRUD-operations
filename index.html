@@ -1,87 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="style.css">
-  <title></title>
+  <title>Home</title>
 </head>
+
 <body>
-<div class="wrapper">
-  <h1>Add A Product</h1>
+  <div id="top"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1.1em"
+      width="1.1em" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd"
+        d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 00.014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 00.022.004zm9.974.056v-.002.002zM8 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0z"
+        clip-rule="evenodd"></path>
+    </svg>
+    <p id="acc">Account</p>
+  </div>
+  <header>
+    <h1>AliExpress</h1>
+  </header>
 
- <form onsubmit="createProduct(); return false">
+  <nav>
+    <button><a href="./index.html">Home</a></button>
+    <button><a href="./products.html">All Products</a></button>
+  </nav>
 
-    <label for="let productName"> Product Name </label>
-    <input type="text" id="productName" required autofocus>
-  <br><br>
+  <div class="wrapper">
+    <h2>Add A Product</h2>
 
-    <label for="productPrice"> Product Price </label>
-    <input type="number" id="productPrice" required>
-  <br><br>
+    <form onsubmit="createProduct(); return false">
 
-    <label for="currencyCode"> Currency Code </label>
-    <input type="text" id="currencyCode" required>
-  <br><br>
+      <label for="let productName"> Product Name </label>
+      <input type="text" id="productName" required autofocus>
+      <br><br>
 
-    <label for="numberOfSale"> Number Of Sale </label>
-    <input type="number" id="numberOfSale" required>
-  <br><br>
+      <label for="productPrice"> Product Price </label>
+      <input type="number" id="productPrice" required>
+      <br><br>
 
-    <label for="rating"> Product's Rating </label>
-    <input type="number" id="rating" min="0" max="5" required>
-  <br><br>
+      <label for="currencyCode"> Currency Code </label>
+      <input type="text" id="currencyCode" required>
+      <br><br>
 
-    <label for="isFreeShipping"> Free Shipping </label>
-    <select name="isFreeShipping" id="isFreeShipping">
-      <option value="true">Yes</option>
-      <option value="false">No</option>
-    </select>
-  <br><br>
+      <label for="numberOfSale"> Number Of Sale </label>
+      <input type="number" id="numberOfSale" required>
+      <br><br>
 
-    <label for="shopName"> Shop Name </label>
-    <input type="text" id="shopName" required>
+      <label for="rating"> Product's Rating </label>
+      <input type="number" id="rating" min="0" max="5" required>
+      <br><br>
 
-  <br><br>
+      <label for="isFreeShipping"> Free Shipping </label>
+      <select name="isFreeShipping" id="isFreeShipping">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+      <br><br>
 
-  <button type="submit" value="Add In Database"> Add </button>
- </form>
+      <label for="shopName"> Shop Name </label>
+      <input type="text" id="shopName" required>
 
-  <i><p id="message"></p></i>
-</div>
+      <br><br>
 
- <script>
+      <button type="submit" value="Add In Database"> Add </button>
+    </form>
 
-  function createProduct() {
-    let productName = document.querySelector('#productName').value;
-    let productPrice = document.querySelector('#productPrice').value;
-    let currencyCode = document.querySelector('#currencyCode').value;
-    let numberOfSale = document.querySelector('#numberOfSale').value;
-    let rating = document.querySelector('#rating').value;
-    let isFreeShipping = document.querySelector('#isFreeShipping').value;
-    let shopName = document.querySelector('#shopName').value;
+    <p id="message"></p>
+  </div>
+  
+  <script>
 
-    axios.post('http://localhost:4000/product', {
-      productName,
-      productPrice,
-      currencyCode,
-      numberOfSale,
-      rating,
-      isFreeShipping,
-      shopName,
-    })
+    function createProduct() {
+      let productName = document.querySelector('#productName').value;
+      let productPrice = document.querySelector('#productPrice').value;
+      let currencyCode = document.querySelector('#currencyCode').value;
+      let numberOfSale = document.querySelector('#numberOfSale').value;
+      let rating = document.querySelector('#rating').value;
+      let isFreeShipping = document.querySelector('#isFreeShipping').value;
+      let shopName = document.querySelector('#shopName').value;
 
-    .then(function (response){
-      console.log(response.data);
-      document.querySelector('#message').innerHTML = response.data.message;
-    })
-    .catch(function(error){
-      console.log(error.response.data);
-     document.querySelector('#message').innerHTML = error.response.data.message;
-    });
-  }
- </script>
+      axios.post('http://localhost:4000/product', {
+        productName,
+        productPrice,
+        currencyCode,
+        numberOfSale,
+        rating,
+        isFreeShipping,
+        shopName,
+      })
+
+        .then(function (response) {
+          console.log(response.data);
+          document.querySelector("#message").innerHTML = response.data.message;
+        })
+        .catch(function (error) {
+          console.log(error.response.data);
+          document.querySelector("#message").innerHTML = error.response.data.message;
+        });
+    }
+  </script>
 </body>
+
 </html>

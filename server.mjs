@@ -8,14 +8,14 @@ import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
 
-  productName : { type: String,  },
+  productName: { type: String, },
   productPrice: { type: Number, },
-  currencyCode: { type: String,  },
-  numberOfSale: { type: Number,  },
-  rating: { type: Number,  },
+  currencyCode: { type: String, },
+  numberOfSale: { type: Number, },
+  rating: { type: Number, },
   isFreeShipping: { type: Boolean, },
-  shopName: { type: String,  },
- 
+  shopName: { type: String, },
+
   createdOn: { type: Date, default: Date.now }
 });
 
@@ -25,15 +25,27 @@ const app = express()
 app.use(express.json());
 app.use(cors())
 
-app.get('/hello', async (req, res) => {
- res.send('hello :)');
+app.get('/products', async (req, res) => {
+
+  let result = await productModel
+    .find({})
+    .exec()
+    .catch(e => {
+      console.log(`error in db`, e);
+      res.status(500).send({ message: `error in getting all products`});
+      return;
+    })
+
+  res.send({
+    message: `Getting All Products Successfully`,
+    data: result});
 });
 
 app.post('/product', async (req, res) => {
-  
+
   let body = req.body;
 
-  if(
+  if (
     !body.productName
     || !body.productPrice
     || !body.currencyCode
@@ -41,9 +53,9 @@ app.post('/product', async (req, res) => {
     || !body.rating
     || !body.isFreeShipping
     || !body.shopName
-  ){
+  ) {
     res.status(400).send({
-      message:`required field's missing, all fields are 
+      message: `required field's missing, all fields are 
       productName
       productPrice
       currencyCode
@@ -55,28 +67,29 @@ app.post('/product', async (req, res) => {
     return;
   }
 
-   let result = await productModel.create({
-      productName: body.productName,
-      productPrice: body.productPrice,
-      currencyCode: body.currencyCode,
-      numberOfSale: body.numberOfSale,
-      rating: body.rating,
-      isFreeShipping: body.isFreeShipping,
-      shopName: body.shopName,
-   }).catch(e => {
-     console.log(`error in db :/`);
-     res.status(500).send({ message: 'db error in saving product :/' });
-   })
+  let result = await productModel.create({
+    productName: body.productName,
+    productPrice: body.productPrice,
+    currencyCode: body.currencyCode,
+    numberOfSale: body.numberOfSale,
+    rating: body.rating,
+    isFreeShipping: body.isFreeShipping,
+    shopName: body.shopName,
 
-   console.log('result:', result);
-   res.send({ message: 'product is added in database' });
+  }).catch(e => {
+    console.log("error in db: ", e);
+    res.status(500).send({ message: "db error in saving product :/" });
+  })
+
+  console.log("result: ", result);
+  res.send({ message: 'product is added in database' });
 
 });
 
 let PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`app is running on ${PORT} `)
-})
+});
 
 ///////////////////// - MongoDB Connection Code- ////////////////////////////////
 

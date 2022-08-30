@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Products</title>
+</head>
+
+<body>
+
+  <div class="dropdown">
+    <div id="top"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1.1em"
+      width="1.1em" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd"
+        d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 00.014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 00.022.004zm9.974.056v-.002.002zM8 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0z"
+        clip-rule="evenodd"></path>
+    </svg> 
+      <button onclick="myFunction()" class="dropbtn">Account</button>
+      <div id="myDropdown" class="dropdown-content">
+        <p>Welcome to AliExpress!</p>
+        <button>Registor</button>
+        <button>SignIn</button>
+      </div>
+    </div>
+  </div>
+  <header>
+    <div class="h1input">
+
+      <h1>AliExpress</h1>
+
+      <i><input type="search" id="searchbar" placeholder="search here"><svg stroke="currentColor" fill="currentColor"
+          stroke-width="0" viewBox="0 0 1024 1024" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z">
+          </path>
+        </svg></i>
+    </div>
+  </header>
+
+  <nav>
+    <button><a href="./index.html">Home</a></button>
+    <button><a href="./products.html">All Products</a></button>
+  </nav>
+
+  <div id="productsList">
+
+    <!-- <div>
+      <img src="./img/airpods-image.webp">
+      <p>Air Pro 4 TWS Wireless Earphones Rename Bluetooth 5.0 Mini Earbuds with Charging Case Sports Handsfree Headset
+        for Smart Phones</p>
+      <p><span>PKR</span> <span>4000</span></p>
+      <p>230 sold</p>
+      <p>Free Shipping</p>
+      <p>Shop Name</p>
+    </div> -->
+
+  </div>
+
+  <script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+
+    async function getAllProducts() {
+      try {
+        const response = await axios.get('http://localhost:4000/products');
+        console.log(response.data.data);
+
+        let productList = document.querySelector('#productslist')
+
+        response.data.data.map(eachProduct => {
+          productList.innerHTML += ` 
+          <div> 
+            <img src="./img/airpods-image.webp">
+            <p>${eachProduct.productName}</p>
+            <p><span>${eachProduct.currencyCode}</span> 
+               <span>${eachProduct.productPrice}</span>
+            </p>
+            <p>${eachProduct.numberOfSale || 0}sold</p>
+            <p>${(eachProduct.isFreeShipping) ? "free shipping" : "no free shipping"}</p>
+            <p>${eachProduct.shopName}Shop Name</p>
+          </div>`
+        })
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getAllProducts();
+
+  </script>
+
+</body>
+
+</html>
