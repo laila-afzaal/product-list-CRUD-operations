@@ -104,6 +104,8 @@ svg:hover{
 }
 #productsList {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: first baseline;
 }
 
 #productsList>div {
@@ -121,10 +123,12 @@ svg:hover{
 }
 #productsList>div>p>span:nth-child(2){
  font-size: 25px;
+ font-weight: 500;
+ color: #ff4747;
 }
-#productsList>div>p>span{
-  color: #ff4747;
-  font-weight: 500;
+#productsList>div>p>span:nth-child(1){
+  font-family: Open Sans,Roboto,Arial,Helvetica,sans-serif,SimSun;
+  font-weight: 600;
 }
 .dropdown{
   display: flex;

@@ -87,7 +87,7 @@ app.post('/product', async (req, res) => {
 
 });
 
-let PORT = process.env.PORT || 4000;
+let PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
   console.log(`app is running on ${PORT} `)
 });
