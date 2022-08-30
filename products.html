@@ -86,7 +86,7 @@
         const response = await axios.get('http://localhost:4000/products');
         console.log(response.data.data);
 
-        let productList = document.querySelector('#productslist')
+        let productList = document.querySelector('#productsList')
 
         response.data.data.map(eachProduct => {
           productList.innerHTML += ` 

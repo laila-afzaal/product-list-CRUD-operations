@@ -32,13 +32,14 @@ app.get('/products', async (req, res) => {
     .exec()
     .catch(e => {
       console.log(`error in db`, e);
-      res.status(500).send({ message: `error in getting all products`});
+      res.status(500).send({ message: `error in getting all products` });
       return;
     })
 
   res.send({
     message: `Getting All Products Successfully`,
-    data: result});
+    data: result
+  })
 });
 
 app.post('/product', async (req, res) => {
@@ -82,7 +83,7 @@ app.post('/product', async (req, res) => {
   })
 
   console.log("result: ", result);
-  res.send({ message: 'product is added in database' });
+  res.status(200).send({ message: 'product is added in database' });
 
 });
 
