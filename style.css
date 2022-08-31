@@ -206,6 +206,7 @@ svg:hover{
   border: 1px solid red;
   border-radius: 3px;
   font-family: monospace;
+  margin-left: 2px;
 }
 .delete:hover{ /*delete btn for each product*/
   background-color: red;
@@ -215,4 +216,54 @@ svg:hover{
   border: 1px solid red;
   color: red;
   font-weight: 500;
+}
+footer{
+  background-color: white;
+  font-family: 'Gill Sans', sans-serif;
+  margin: auto -8px;
+  padding: 20px;
+}
+
+footer>input{
+   border: 2px solid lightslategray;
+   display: flex;
+   flex-flow: column wrap;
+   /* justify-content: center; */
+   align-items: center;
+   margin: 5px;
+   margin-left: 1040px;
+   /* width: 200px; */
+   padding: 10px 17px;
+   border-radius: 3px;
+}
+#footerbtn{
+  background-color: black;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-flow: column wrap;
+  /* justify-content: center; */
+  align-items: center;
+  margin: 10px;
+  margin-left: 1040px;
+  /* width: 200px; */
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 3px;
+}
+footer>p{
+   display: flex;
+   flex-flow: column wrap;
+   justify-content: center;
+   align-items: flex-end;
+   font-weight: 600;
+   font-size: 25px;
+   margin: 5px;
+   padding: 15px;
+   margin-right: 53px;
+   /* margin-left: 200px; */
+}
+footer>p:nth-child(2){
+  margin-top: -25px;
+  margin-right: 128px;
 }
