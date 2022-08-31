@@ -27,6 +27,7 @@
       </div>
     </div>
   </div>
+
   <header>
     <div class="h1input">
 
@@ -47,6 +48,11 @@
   </nav>
 
   <div id="productsList">
+    <!-- products are shown here -->
+  </div>
+
+  <div id="updateForm">
+
   </div>
 
   <script>
@@ -99,7 +105,8 @@
             <p>${eachProduct.numberOfSale || 0} sold</p>
             <p>${(eachProduct.isFreeShipping) ? "free shipping" : "no free shipping"}</p>
             <p>${eachProduct.shopName}</p>
-            <button class="delete" onclick="deleteProduct('${eachProduct._id}')">Delete</button>
+            <button class="delete" onclick="deleteProduct('${eachProduct._id}')">DELETE</button>
+            <button class="edit" onclick="editProduct('${eachProduct._id}')">EDIT</button>
           </div>`
         })
 
@@ -109,7 +116,7 @@
     }
     getAllProducts();
 
-    //a function to delete each product
+    //a function to delete each productsList
     async function deleteProduct(id) {
       console.log("productId: ", id);
 
@@ -125,11 +132,110 @@
         getAllProducts();
       }
 
+    };
+
+    //a function to edit productsList
+    async function editProduct(id) {
+      console.log("id: ", id);
+
+      let response = await axios
+        .get(`${baseUrl}/product/${id}`)
+        .catch(e => {
+          console.log('error', e);
+          return;
+        });
+
+      if (response) {
+        console.log('product:', response.data.data);
+
+        let product = response.data.data;
+
+        document.querySelector('#updateForm').innerHTML = `
+        
+        <form class="updateForm "onsubmit="completeUpdate(); return false">
+
+          <fieldset>
+          <legend>Update A Product</legend>
+
+            <label for="productId">Product Id</label>
+            <input type="text" id="productId" value="${product._id}" disabled>
+            <br><br>
+
+            <label for="productName">Product Name</label>
+            <input type="text" id="productName" value="${product.productName}" required>
+            <br><br>
+
+            <label for="productPrice"> Product Price </label>
+            <input type="number" id="productPrice" value="${product.productPrice}" required>
+            <br><br>
+
+            <label for="currencyCode"> Currency Code </label>
+            <input type="text" id="currencyCode" value="${product.currencyCode}" required>
+            <br><br>
+
+            <label for="numberOfSale"> Number Of Sale </label>
+            <input type="number" id="numberOfSale" value="${product.numberOfSale}" required>
+            <br><br>
+
+            <label for="rating"> Product's Rating </label>
+            <input type="number" id="rating" min="0" max="5" value="${product.rating}" required>
+            <br><br>
+
+            <label for="isFreeShipping"> Free Shipping </label>
+            <select name="isFreeShipping" id="isFreeShipping" value="${product.isFreeShipping}">
+              <option ${(product.isFreeShipping) ? "selected" : ""} value="true">Yes</option>
+              <option ${(!product.isFreeShipping) ? "selected" : ""} value="false">No</option>
+            </select>
+            <br><br>
+
+            <label for="shopName"> Shop Name </label>
+            <input type="text" id="shopName" value="${product.shopName}" required>
+            <br><br>
+
+            <button type="submit" value="Complete Update" id="ud-btn"> UPDATE </button>
+          </fieldset>
+        </form>`
+
+      }
+    };
+
+    //a function to update productsList
+    function completeUpdate() {
+      let productId = document.querySelector("#productId").value;
+      let productName = document.querySelector("#productName").value;
+      let productPrice = document.querySelector("#productPrice").value;
+      let currencyCode = document.querySelector("#currencyCode").value;
+      let numberOfSale = document.querySelector("#numberOfSale").value;
+      let rating = document.querySelector("#rating").value;
+      let isFreeShipping = document.querySelector("#isFreeShipping").value;
+      let shopName = document.querySelector("#shopName").value;
+
+
+      axios.put(`${baseUrl}/product/${productId}`, {
+        productName,
+        productPrice,
+        currencyCode,
+        numberOfSale,
+        rating,
+        isFreeShipping,
+        shopName,
+      })
+        .then(function (response) {
+          console.log(response.data);
+          document.querySelector("#updateForm").innerHTML = ``;
+          getAllProducts();
+        })
+        .catch(function (error) {
+          console.log(error.response.data);
+        });
     }
 
   </script>
 
   <footer>
+    <!-- make 2 divs here:
+                1 : icons
+                2 : newsletter -->
     <p>Subscribe to our </p>
     <p>newsletter</p>
     <input type="email" placeholder="Email Address">

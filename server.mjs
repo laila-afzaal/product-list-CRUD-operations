@@ -42,6 +42,23 @@ app.get('/products', async (req, res) => {
   })
 });
 
+app.get('/product/:id', async (req, res) => {
+
+  let result = await productModel
+    .findOne({_id: req.params.id})
+    .exec()
+    .catch(e => {
+      console.log(`error in db`, e);
+      res.status(500).send({ message: `error in getting all products` });
+      return;
+    })
+
+  res.send({
+    message: `Getting All Products Successfully`,
+    data: result
+  })
+});
+
 app.post('/product', async (req, res) => {
 
   let body = req.body;
@@ -96,6 +113,27 @@ app.delete('/product/:id', async (req, res) => {
     console.log("Deleted product: ", result);
     res.send({
       message: "Product Deleted"
+    });
+    return;
+
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({
+      message: "db error"
+    })
+  }
+});
+
+app.put('/product/:id', async (req, res) => {
+
+  let _id = req.params.id;
+  let body = req.body;
+
+  try {
+    const result = await productModel.findByIdAndUpdate(_id, body);
+    console.log("Updated product: ", result);
+    res.send({
+      message: "Product Updated"
     });
     return;
 
