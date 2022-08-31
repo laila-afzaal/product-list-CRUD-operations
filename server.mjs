@@ -87,6 +87,31 @@ app.post('/product', async (req, res) => {
 
 });
 
+app.delete('/product/:id', async (req, res) => {
+
+  let _id = req.params.id;
+
+  try {
+    const result = await productModel.findByIdAndDelete(_id);
+    console.log("Deleted product: ", result);
+    res.send({
+      message: "Product Deleted"
+    });
+    return;
+
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({
+      message: "db error"
+    })
+  }
+});
+
+// app.use('/*', (req, res) => {
+//   console.log('I am * handler');
+//   res.status(404).send(`this api doesn't exist`);
+// });
+
 let PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
   console.log(`app is running on ${PORT} `)

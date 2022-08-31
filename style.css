@@ -108,7 +108,7 @@ svg:hover{
   justify-content: first baseline;
 }
 
-#productsList>div {
+#productsList>div { /*for each product*/ 
   border: 1px solid beige;
   width: 220px;
   padding: 10px;
@@ -198,4 +198,21 @@ svg:hover{
   background-color: white;
   color: #ff4747;
   cursor: pointer;
+}
+.delete{ /*delete btn for each product*/
+  color: red;
+  font-size: 18px;
+  cursor: pointer;
+  border: 1px solid red;
+  border-radius: 3px;
+  font-family: monospace;
+}
+.delete:hover{ /*delete btn for each product*/
+  background-color: red;
+  color: white;
+}
+.delete:active{ /*delete btn for each product*/
+  border: 1px solid red;
+  color: red;
+  font-weight: 500;
 }

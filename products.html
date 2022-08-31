@@ -47,17 +47,6 @@
   </nav>
 
   <div id="productsList">
-
-    <!-- <div>
-      <img src="./img/airpods-image.webp">
-      <p>Air Pro 4 TWS Wireless Earphones Rename Bluetooth 5.0 Mini Earbuds with Charging Case Sports Handsfree Headset
-        for Smart Phones</p>
-      <p><span>PKR</span> <span>4000</span></p>
-      <p>230 sold</p>
-      <p>Free Shipping</p>
-      <p>Shop Name</p>
-    </div> -->
-
   </div>
 
   <script>
@@ -81,6 +70,8 @@
       }
     }
 
+    //to get the current URL with JavaScript:
+
     let baseUrl;
 
     if (window.location.href.indexOf("https") === -1) {
@@ -88,6 +79,7 @@
     } else {
       baseUrl = "https://e-commerce-store-crud-op.herokuapp.com";
     }
+    //to get the current URL with JavaScript-------------------
 
     async function getAllProducts() {
       try {
@@ -107,6 +99,7 @@
             <p>${eachProduct.numberOfSale || 0} sold</p>
             <p>${(eachProduct.isFreeShipping) ? "free shipping" : "no free shipping"}</p>
             <p>${eachProduct.shopName}</p>
+            <button class="delete" onclick="deleteProduct('${eachProduct._id}')">Delete</button>
           </div>`
         })
 
@@ -115,6 +108,24 @@
       }
     }
     getAllProducts();
+
+    //a function to delete each product
+    async function deleteProduct(id) {
+      console.log("productId: ", id);
+
+      let response = await axios
+        .delete(`${baseUrl}/product/${id}`)
+        .catch(e => {
+          console.log('error', e);
+          return;
+        });
+
+      if (response) {
+        console.log('deleted');
+        getAllProducts();
+      }
+
+    }
 
   </script>
 
