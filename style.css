@@ -333,7 +333,9 @@ footer>p:nth-child(2) {
 .updateForm{
   background-color: white;
   position: fixed;
-  top: 0;
+  /* top: 0;
+  left: 35%; */
+  top: 15%;
   left: 35%;
   padding: 5px;
   border-radius: 2px;
