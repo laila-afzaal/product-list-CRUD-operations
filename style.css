@@ -549,6 +549,21 @@ img:hover {
     margin: 2px -15px;
     padding: 5px 5px 5px 15px;
   }
+  .updateForm{
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    margin: 10px 20px;
+    font-size: 15px;
+  }
+  .updateForm>input{
+    font-size: 14px;
+  }
+  .dropdown {
+    margin-left: 255px;
+  }
 }
 
 @media only screen and (max-width:375px) {
@@ -767,5 +782,17 @@ img:hover {
   #productsList{
     margin: 2px;
     padding: 5px 5px 5px 15px;
+  }
+  .updateForm{
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 5%;
+    left: -2%;
+    margin: 10px 20px;
+    font-size: 15px;
+  }
+  .dropdown {
+    margin-left: 195px;
   }
 }
