@@ -408,7 +408,7 @@ img:hover {
   color: white;
 }
 
-@media only screen and (max-width:425px) {
+@media only screen and (max-width:440px) {
   body {
     font-size: 18px;
   }
@@ -462,7 +462,8 @@ img:hover {
 
   .h1input>i>svg {
     border-radius: 2px;
-    margin-right: -25px;
+    padding: 4px 5px 6px 4px;
+    margin-right: -22px;
   }
 
   .dropdown {
@@ -526,6 +527,28 @@ img:hover {
     margin: 15px 15px 20px -2px;
     padding: 10px -65px 10px -65px;
   }
+  /* #productsList{
+  } */
+  #productsList>div>p,
+  #productsList>div>button{
+   font-size: 15px;
+  }
+  #productsList>div>img{
+   width: 180px;
+  }
+  #productsList>div>img:hover{
+    width: 190px;
+   }
+  #productsList>div>p>span{
+    font-size: 11px;
+  }
+  #productsList>div>p>span:nth-child(2){
+    font-size: 19px;
+  }
+  #productsList{
+    margin: 2px -15px;
+    padding: 5px 5px 5px 15px;
+  }
 }
 
 @media only screen and (max-width:375px) {
@@ -573,7 +596,7 @@ img:hover {
 
   .h1input>i>svg {
     margin: -78px 5px 22px 270px;
-    /* padding: 8px 10px; */
+    padding: 6px 6px;
   }
   nav{
     margin: auto -7.5px;
@@ -631,6 +654,16 @@ img:hover {
   .wrapper{
     margin: 10px 2px 5px -3px;
     padding: 10px 3px 10px 4px;
+  }
+  #productsList{
+    margin: 2px;
+    padding: 5px 5px 5px 15px;
+  }
+  #productsList>div>img{
+    width: 180px;
+   }
+  #productsList>div>img:hover{
+    width: 190px;
   }
 }
 
@@ -724,5 +757,15 @@ img:hover {
   .wrapper{
     margin: 10px 2px 5px -3px;
     padding: 10px 3px 10px 4px;
+  }
+  #productsList>div>img{
+    width: 180px;
+   }
+  #productsList>div>img:hover{
+    width: 190px;
+  }
+  #productsList{
+    margin: 2px;
+    padding: 5px 5px 5px 15px;
   }
 }
