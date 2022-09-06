@@ -264,7 +264,7 @@ footer>input {
   flex-flow: column wrap;
   align-items: center;
   margin: 5px;
-  margin-left: 1040px;
+  margin-left: 1005px;
   padding: 10px 17px;
   border-radius: 3px;
 }
@@ -278,7 +278,7 @@ footer>input {
   /* justify-content: center; */
   align-items: center;
   margin: 10px;
-  margin-left: 1040px;
+  margin-left: 1005px;
   /* width: 200px; */
   cursor: pointer;
   padding: 10px 15px;
@@ -294,13 +294,13 @@ footer>p {
   font-size: 25px;
   margin: 5px;
   padding: 15px;
-  margin-right: 53px;
+  margin-right: 87px;
   /* margin-left: 200px; */
 }
 
 footer>p:nth-child(2) {
   margin-top: -25px;
-  margin-right: 128px;
+  margin-right: 163px;
 }
 
 /*btn to edit each n every product*/
